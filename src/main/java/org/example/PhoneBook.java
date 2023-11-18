@@ -31,9 +31,13 @@ public class PhoneBook {
     }
 
     public String sortedOut() {
-        Map<Integer, String> sortedTree = new TreeMap<Integer, String>(Collections.reverseOrder());
+        Map<Integer, String> sortedTree = new TreeMap<>(Collections.reverseOrder());
         for (Map.Entry<String, List<String>> map : phoneBook.entrySet()) {
-            sortedTree.put(map.getValue().size(), map.getKey());
+            if (sortedTree.containsKey(map.getValue().size())) {
+                sortedTree.put(map.getValue().size() + 1, map.getKey());
+            } else {
+                sortedTree.put(map.getValue().size(), map.getKey());
+            }
         }
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -55,6 +59,7 @@ public class PhoneBook {
         return stringBuilder.toString();
     }
 
+
     public void entryAdd(String name, String phone) {
         if (this.phoneBook.containsKey(name)) {
             if (!this.phoneBook.get(name).contains(phone)) {
@@ -66,8 +71,9 @@ public class PhoneBook {
             this.phoneBook.put(name, list);
         }
     }
-    public void entryDel(String name){
-        if (this.phoneBook.containsKey(name)){
+
+    public void entryDel(String name) {
+        if (this.phoneBook.containsKey(name)) {
             this.phoneBook.remove(name);
         }
     }
