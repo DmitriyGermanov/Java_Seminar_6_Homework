@@ -1,19 +1,17 @@
 package org.example;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+/*Реализуйте структуру телефонной книги с помощью HashMap.
+        Программа также должна учитывать, что в во входной структуре будут повторяющиеся имена с разными телефонами,
+        их необходимо считать, как одного человека с разными телефонами. Вывод должен быть отсортирован по убыванию
+        числа телефонов.*/
 public class Main {
     public static void main(String[] args) {
         // Press Alt+Enter with your caret at the highlighted text to see how
         // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
-
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        PhoneBook phoneBook = new PhoneBook();
+        phoneBook.setPhoneBook("Вася", "+7995597396");
+        //phoneBook.setPhoneBook("Вася", "+7995597396");
+        phoneBook.setPhoneBook("Иван", "+7995597396");
+        System.out.println(phoneBook);
         }
     }
-}

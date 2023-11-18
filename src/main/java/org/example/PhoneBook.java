@@ -1,35 +1,42 @@
 package org.example;
 
 import java.util.HashMap;
-import java.util.Objects;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class PhoneBook {
-    HashMap<String, String> phoneBook = new HashMap<>();
+    Map<String, List<String>> phoneBook = new HashMap<>();
 
     @Override
     public String toString() {
-        return "PhoneBook{" +
-                "phoneBook=" + phoneBook +
-                '}';
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Map.Entry<String, List<String>> map : phoneBook.entrySet()) {
+            stringBuilder.append("Имя - ");
+            stringBuilder.append(map.getKey());
+            stringBuilder.append(", Телефоны - ");
+            int temp = 0;
+            for (String value : map.getValue()) {
+                if (temp != 0){
+                    stringBuilder.append(", ");
+                    temp++;
+                }
+                stringBuilder.append(value);
+            }
+
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PhoneBook phoneBook1)) return false;
-        return Objects.equals(getPhoneBook(), phoneBook1.getPhoneBook());
+    public void setPhoneBook(String name, String phone) {
+        if (this.phoneBook.containsKey(name)) {
+        } else {
+            LinkedList list = new LinkedList();
+            list.add(phone);
+            this.phoneBook.put(name, list);
+        }
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getPhoneBook());
-    }
 
-    public void setPhoneBook(HashMap<String, String> phoneBook) {
-        this.phoneBook = phoneBook;
-    }
-
-    public HashMap<String, String> getPhoneBook() {
-        return phoneBook;
-    }
 }
