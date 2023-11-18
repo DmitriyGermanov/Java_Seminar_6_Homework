@@ -31,30 +31,29 @@ public class PhoneBook {
     }
 
     public String sortedOut() {
-        Map<Integer, String> sortedTree = new TreeMap<>(Collections.reverseOrder());
+        Map<Integer, List<Map.Entry>> sortedTree = new TreeMap<>(Collections.reverseOrder());
         for (Map.Entry<String, List<String>> map : phoneBook.entrySet()) {
             if (sortedTree.containsKey(map.getValue().size())) {
-                sortedTree.put(map.getValue().size() + 1, map.getKey());
+                sortedTree.get(map.getValue().size()).add(map);
             } else {
-                sortedTree.put(map.getValue().size(), map.getKey());
+                List<Map.Entry> hashList = new LinkedList<>();
+                hashList.add(map);
+                sortedTree.put(map.getValue().size(), hashList);
             }
         }
+        //System.out.println(sortedTree);
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (Map.Entry<Integer, String> map : sortedTree.entrySet()) {
-            stringBuilder.append("Имя - ");
-            stringBuilder.append(map.getValue());
-            stringBuilder.append(", Телефоны - ");
-            boolean temp = false;
-            for (String value : this.phoneBook.get(map.getValue())) {
-                if (temp) {
-                    stringBuilder.append(", ");
-                }
-                stringBuilder.append(value);
-                temp = true;
+        for (Map.Entry<Integer, List<Map.Entry>> map : sortedTree.entrySet()) {
+            for (Map.Entry entry : map.getValue()) {
+                stringBuilder.append("Имя - ");
+                stringBuilder.append(entry.getKey());
+                stringBuilder.append(", Телефоны - ");
+                stringBuilder.append(entry.getValue());
+
+                stringBuilder.append("\n");
             }
 
-            stringBuilder.append("\n");
         }
         return stringBuilder.toString();
     }
