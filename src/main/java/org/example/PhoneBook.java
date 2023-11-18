@@ -15,13 +15,13 @@ public class PhoneBook {
             stringBuilder.append("Имя - ");
             stringBuilder.append(map.getKey());
             stringBuilder.append(", Телефоны - ");
-            int temp = 0;
+            boolean temp = false;
             for (String value : map.getValue()) {
-                if (temp != 0){
+                if (temp) {
                     stringBuilder.append(", ");
-                    temp++;
                 }
                 stringBuilder.append(value);
+                temp = true;
             }
 
             stringBuilder.append("\n");
@@ -31,6 +31,9 @@ public class PhoneBook {
 
     public void setPhoneBook(String name, String phone) {
         if (this.phoneBook.containsKey(name)) {
+            if (!this.phoneBook.get(name).contains(phone)) {
+                phoneBook.get(name).add(phone);
+            }
         } else {
             LinkedList list = new LinkedList();
             list.add(phone);

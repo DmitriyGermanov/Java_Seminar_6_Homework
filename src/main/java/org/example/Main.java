@@ -10,8 +10,13 @@ public class Main {
         // IntelliJ IDEA suggests fixing it.
         PhoneBook phoneBook = new PhoneBook();
         phoneBook.setPhoneBook("Вася", "+7995597396");
-        //phoneBook.setPhoneBook("Вася", "+7995597396");
+        phoneBook.setPhoneBook("Вася", "+7995597396");
+        phoneBook.setPhoneBook("Вася", "+7995597385");
         phoneBook.setPhoneBook("Иван", "+7995597396");
+        phoneBook.setPhoneBook("Иван", "+7996278452");
+        phoneBook.setPhoneBook("Иван", "+7812554356");
+        phoneBook.setPhoneBook("Сергей", "+79955973496");
+        phoneBook.setPhoneBook("Сергей", "+7995523455");
         System.out.println(phoneBook);
         }
     }
