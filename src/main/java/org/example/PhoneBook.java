@@ -49,7 +49,15 @@ public class PhoneBook {
                 stringBuilder.append("Имя - ");
                 stringBuilder.append(entry.getKey());
                 stringBuilder.append(", Телефоны - ");
-                stringBuilder.append(entry.getValue());
+                List<String> values = (List<String>) entry.getValue();
+                boolean temp = false;
+                for (String value : values) {
+                    if (temp) {
+                        stringBuilder.append(", ");
+                    }
+                    stringBuilder.append(value);
+                    temp = true;
+                }
 
                 stringBuilder.append("\n");
             }
